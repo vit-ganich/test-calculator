@@ -5,8 +5,7 @@ Equivalence classes:
 
     Below zero positive
         -2147483647
-	-70000
-        -100
+        -1073741823
         -1
 
     Zero
@@ -14,8 +13,10 @@ Equivalence classes:
 
     Above zero positive
         1
-        200
-        50000
+        333
+        55555
+        7777777
+        999999999
         2147483647
 
     Above zero negative
