@@ -1,0 +1,29 @@
+Equivalence classes:
+
+    Below zero negative
+        -2147483648
+
+    Below zero positive
+        -2147483647
+	-70000
+        -100
+        -1
+
+    Zero
+        0
+
+    Above zero positive
+        1
+        200
+        50000
+        2147483647
+
+    Above zero negative
+        2147483648
+
+    Non-digits, non-integer and empty values (negative)
+        99.0
+        !@#$%^&*() asdDkE8o5
+        -0
+Combinations:   	153
+Generated tests:	81
