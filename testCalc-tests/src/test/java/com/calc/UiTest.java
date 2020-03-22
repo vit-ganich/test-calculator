@@ -1,19 +1,22 @@
-package com.webui.tests;
+package com.calc;
 
-import com.datareader.DataReader;
-import com.webui.base.BaseTest;
-import com.webui.pages.CalcPage;
+import com.calc.datareader.DataReader;
+import com.calc.webui.base.BaseTest;
+import com.calc.webui.pages.CalcPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+/** Class with UI tests using Selenium webDriver
+ *
+ */
 public class UiTest extends BaseTest {
 
     @DataProvider
     public Object[][] getExcelData() throws IOException {
-        DataReader reader = new DataReader("testData/testDataPositive.xls", "TestSuite1");
+        DataReader reader = new DataReader("src/test/resources/testDataPositive.xls", "TestSuite1");
         return reader.readExcel();
     }
 

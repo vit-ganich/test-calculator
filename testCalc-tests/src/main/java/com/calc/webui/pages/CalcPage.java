@@ -1,10 +1,15 @@
-package com.webui.pages;
-import com.webui.base.BasePage;
+package com.calc.webui.pages;
+import com.calc.webui.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+/** Page object for the Calculator page.
+ * Contains webElements and custom methods to perform operations with the webElements
+ *
+ * @author VHanich
+ */
 public class CalcPage extends BasePage {
 
     private By LABEL = By.cssSelector("tbody>tr>td");
@@ -36,6 +41,13 @@ public class CalcPage extends BasePage {
         operationElem.click();
     }
 
+    /** Gets the Operation radio button.
+     * Operations: addition, division, subtraction and multiplication
+     *
+     * @param operation String operation from the test data
+     * @return          Radio button webElement
+     * @throws InvalidArgumentException Throws the exception if the operation is invalid
+     */
     private WebElement chooseOperation(String operation) throws InvalidArgumentException{
         switch (operation.toLowerCase().trim()){
             case "addition":

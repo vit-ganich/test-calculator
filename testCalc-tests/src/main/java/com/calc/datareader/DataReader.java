@@ -1,9 +1,13 @@
-package com.datareader;
+package com.calc.datareader;
 
 import org.apache.poi.ss.usermodel.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/** Class for reading test data from Excel spreadsheets
+ *
+ * @author VHanich & StackOwerflow (with improvements)
+ */
 public class DataReader {
     private Sheet excelWSheet;
 
