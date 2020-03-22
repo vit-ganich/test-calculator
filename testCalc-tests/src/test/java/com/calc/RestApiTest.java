@@ -56,7 +56,6 @@ public class RestApiTest {
                 .statusCode(200)
                 .and()
                 .body("result", equalTo((int)expectedResult));
-        Thread.sleep(500);
     }
 
     /** Choose the valid operation code for GET and POST requests.
