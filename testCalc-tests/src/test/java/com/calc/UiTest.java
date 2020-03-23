@@ -24,8 +24,8 @@ public class UiTest extends BaseTest {
         return reader.readExcel();
     }
 
-    @Test(testName = "testCalculator", dataProvider = "getExcelData")
-    public void testCalculator(String operation, double value1, double value2, double expectedResult) throws InterruptedException {
+    @Test(testName = "test calculator", dataProvider = "getExcelData")
+    public void testCalculator(String operation, double value1, double value2, double expectedResult) {
         CalcPage page = new CalcPage(driver);
 
         page.selectOperation(operation);
@@ -33,10 +33,9 @@ public class UiTest extends BaseTest {
         page.enterSecondValue(String.valueOf((int)value2));
         page.calculate();
 
-        Thread.sleep(100); // To slow tests down a bit
-
         String actual = page.readResult();
         String expected = String.valueOf((long)expectedResult);
+
         Assert.assertEquals(actual, expected);
 
         System.out.println(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
@@ -47,7 +46,7 @@ public class UiTest extends BaseTest {
         return OperationsHelper.operations;
     }
 
-    @Test(testName = "randomOperations", dataProvider = "operations", invocationCount = 10)
+    @Test(testName = "random operations", dataProvider = "operations", invocationCount = 10)
     public void testRandomAddition(String operation){
         int value1 = randomValue();
         int value2 = randomValue();
@@ -67,7 +66,7 @@ public class UiTest extends BaseTest {
         System.out.println(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
     }
 
-    @Test
+    @Test(testName = "verify label")
     public void verifyCalculatorLabel(){
         CalcPage page = new CalcPage(driver);
         String actual = page.getLabelText();

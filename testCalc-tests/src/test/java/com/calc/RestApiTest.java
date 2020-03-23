@@ -27,7 +27,7 @@ public class RestApiTest {
         return reader.readExcel();
     }
 
-    @Test(testName = "sendGetRequest", dataProvider = "getExcelData")
+    @Test(testName = "send GET", dataProvider = "getExcelData")
     public void sendGetRequest(String operation, double value1, double value2, double expectedResult) {
         String operand = chooseRequestOperand(operation, true);
         String requestUrl = String.format("%s/%s?val1=%s&val2=%s", url, operand, (int)value1, (int)value2);
@@ -41,7 +41,7 @@ public class RestApiTest {
                 .body("result", equalTo((int)expectedResult));
     }
 
-    @Test(testName = "sendPostRequest", dataProvider = "getExcelData")
+    @Test(testName = "send POST", dataProvider = "getExcelData")
     public void sendPostRequest(String operation, double value1, double value2, double expectedResult) {
         String requestUrl = String.format("%s/compute", url);
 
@@ -67,7 +67,7 @@ public class RestApiTest {
         return OperationsHelper.operations;
     }
 
-    @Test(testName = "randomGET", dataProvider = "operations", invocationCount = 10)
+    @Test(testName = "random GET", dataProvider = "operations", invocationCount = 10)
     public void sendRandomGetRequest(String operation){
         int value1 = randomValue();
         int value2 = randomValue();
@@ -87,7 +87,7 @@ public class RestApiTest {
         System.out.println(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
     }
 
-    @Test(testName = "randomPOST", dataProvider = "operations", invocationCount = 10)
+    @Test(testName = "random POST", dataProvider = "operations", invocationCount = 10)
     public void sendRandomPostRequest(String operation) {
         int value1 = randomValue();
         int value2 = randomValue();
