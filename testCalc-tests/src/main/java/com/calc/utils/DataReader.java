@@ -1,10 +1,11 @@
-package com.calc.datareader;
+package com.calc.utils;
 
 import org.apache.poi.ss.usermodel.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-/** Class for reading test data from Excel spreadsheets
+/**
+ * Class for reading test data from Excel spreadsheets
  *
  * @author VHanich & StackOwerflow (with improvements)
  */
@@ -15,12 +16,23 @@ public class DataReader {
         this.excelWSheet = createExcelSheet(sheetPath, sheetName);
     }
 
+    /**
+     * Create an Excel worksheet
+     * @param sheetPath Path to Excel file
+     * @param sheetName Name of the worksheet
+     * @return  Sheet object
+     * @throws IOException  Throws exception when the file doesn't exist
+     */
     private Sheet createExcelSheet(String sheetPath, String sheetName) throws IOException {
         FileInputStream excelFile = new FileInputStream(sheetPath);
         Workbook excelWBook = WorkbookFactory.create(excelFile);
         return excelWBook.getSheet(sheetName);
     }
 
+    /**
+     * Get the number of worksheet rows and cells and iterate through them, reading a data.
+     * @return  Object[][] array with data
+     */
     public Object[][] readExcel() {
         int rowsCount = excelWSheet.getLastRowNum();
         int cellsCount = excelWSheet.getRow(0).getLastCellNum();

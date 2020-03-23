@@ -5,7 +5,8 @@ import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-/** Page object for the Calculator page.
+/**
+ * Page object for the Calculator page.
  * Contains webElements and custom methods to perform operations with the webElements
  *
  * @author VHanich
@@ -41,14 +42,15 @@ public class CalcPage extends BasePage {
         operationElem.click();
     }
 
-    /** Gets the Operation radio button.
+    /**
+     * Gets the Operation radio button.
      * Operations: addition, division, subtraction and multiplication
      *
-     * @param operation String operation from the test data
-     * @return          Radio button webElement
-     * @throws InvalidArgumentException Throws the exception if the operation is invalid
+     * @param operation the operation from the test data
+     * @return  radio button
+     * @throws InvalidArgumentException if the operation is invalid
      */
-    private WebElement chooseOperation(String operation) throws InvalidArgumentException{
+    private WebElement chooseOperation(String operation) throws InvalidArgumentException {
         switch (operation.toLowerCase().trim()){
             case "addition":
                 return waitForElementIsClickable(ADDITION);

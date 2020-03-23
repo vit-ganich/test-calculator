@@ -6,7 +6,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
-/** Base class for web UI tests.
+/**
+ * Base class for web UI tests.
  * Contains setUp and tearDown methods and common fields.
  *
  * @author VHanich
@@ -19,7 +20,7 @@ public class BaseTest {
     @BeforeClass
     public void setUpClass(){
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
     }
 
     @BeforeMethod
