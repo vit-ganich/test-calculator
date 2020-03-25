@@ -2,6 +2,7 @@ package com.calc.utils;
 
 import org.openqa.selenium.InvalidArgumentException;
 
+import static com.calc.utils.Operations.*;
 import static java.util.concurrent.ThreadLocalRandom.current;
 
 /**
@@ -10,7 +11,7 @@ import static java.util.concurrent.ThreadLocalRandom.current;
  */
 public class OperationsHelper {
 
-    public static Object[] operations = new Object[] {"addition", "subtraction", "multiplication", "division"};
+    public static Object[] operations = new Object[] {ADDITION, DIVISION, MULTIPLICATION, SUBTRACTION};
 
     /**
      * Method performs math operations for given operand.
@@ -20,15 +21,15 @@ public class OperationsHelper {
      * @return  result
      * @throws InvalidArgumentException in case of invalid operation
      */
-    public static int performOperation(String operation, int value1, int value2) throws InvalidArgumentException {
+    public static int performOperation(Operations operation, int value1, int value2) throws InvalidArgumentException {
         switch (operation) {
-            case "addition":
+            case ADDITION:
                 return value1 + value2;
-            case "subtraction":
+            case SUBTRACTION:
                 return value1 - value2;
-            case "multiplication":
+            case MULTIPLICATION:
                 return value1 * value2;
-            case "division":
+            case DIVISION:
                 return value1 / value2;
             default:
                 throw new InvalidArgumentException(String.format("Invalid operation: %s", operation));
@@ -47,23 +48,27 @@ public class OperationsHelper {
      * @return  the operation code
      * @throws InvalidArgumentException if the operation is invalid
      */
-    public static String chooseRequestOperand(String operation, Boolean isGet) throws InvalidArgumentException {
-        switch (operation.toLowerCase().trim()) {
-            case "addition":
+    public static String chooseRequestOperand(Operations operation, Boolean isGet) throws InvalidArgumentException {
+        switch (operation) {
+            case ADDITION:
                 return "add";
-            case "division":
+            case DIVISION:
                 return isGet ? "divide" : "div";
-            case "multiplication":
+            case MULTIPLICATION:
                 return isGet ? "multiply": "mul";
-            case "subtraction":
+            case SUBTRACTION:
                 return isGet ? "subtract" : "sub";
             default:
                 throw new InvalidArgumentException(String.format("Invalid operation: '%s'", operation));
         }
     }
 
+    /**
+     * Max and min values are divided to 2 to avoid the Integer Overflow
+     *
+     * @return random integer
+     */
     public static int randomValue(){
-        // Max and min values are divided to 2 to avoid the Integer Overflow
         int min = Integer.MIN_VALUE / 2;
         int max = Integer.MAX_VALUE / 2;
         return current().nextInt(min, max);

@@ -1,4 +1,5 @@
 package com.calc.webui.pages;
+import com.calc.utils.Operations;
 import com.calc.webui.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
@@ -13,14 +14,14 @@ import org.openqa.selenium.WebElement;
  */
 public class CalcPage extends BasePage {
 
-    private By LABEL = By.cssSelector("tbody>tr>td");
-    private By VALUE1 = By.cssSelector("input[name='val1']");
-    private By VALUE2 = By.cssSelector("input[name='val2']");
-    private By ADDITION = By.cssSelector("input[value='add']");
-    private By SUBTRACTION = By.cssSelector("input[value='sub']");
-    private By MULTIPLICATION = By.cssSelector("input[value='mul']");
-    private By DIVISION = By.cssSelector("input[value='div']");
-    private By CALCULATE = By.cssSelector("input[type='submit']");
+    private By label = By.cssSelector("tbody>tr>td");
+    private By value1 = By.cssSelector("input[name='val1']");
+    private By value2 = By.cssSelector("input[name='val2']");
+    private By addition = By.cssSelector("input[value='add']");
+    private By subtraction = By.cssSelector("input[value='sub']");
+    private By multiplication = By.cssSelector("input[value='mul']");
+    private By division = By.cssSelector("input[value='div']");
+    private By calculate = By.cssSelector("input[type='submit']");
     private By RESULT = By.cssSelector("input[name='result']");
 
     public CalcPage(WebDriver driver) {
@@ -28,45 +29,37 @@ public class CalcPage extends BasePage {
     }
 
     public void enterFirstValue(String value){
-        WebElement textBox = waitForElementIsClickable(VALUE1);
+        WebElement textBox = waitForElementIsClickable(value1);
         writeToTextBox(textBox, value);
     }
 
     public void enterSecondValue(String value){
-        WebElement textBox = waitForElementIsClickable(VALUE2);
+        WebElement textBox = waitForElementIsClickable(value2);
         writeToTextBox(textBox, value);
     }
 
-    public void selectOperation(String operation){
+    public void selectOperation(Operations operation){
         WebElement operationElem = chooseOperation(operation);
         operationElem.click();
     }
 
-    /**
-     * Gets the Operation radio button.
-     * Operations: addition, division, subtraction and multiplication
-     *
-     * @param operation the operation from the test data
-     * @return  radio button
-     * @throws InvalidArgumentException if the operation is invalid
-     */
-    private WebElement chooseOperation(String operation) throws InvalidArgumentException {
-        switch (operation.toLowerCase().trim()){
-            case "addition":
-                return waitForElementIsClickable(ADDITION);
-            case "division":
-                return waitForElementIsClickable(DIVISION);
-            case "multiplication":
-                return waitForElementIsClickable(MULTIPLICATION);
-            case "subtraction":
-                return waitForElementIsClickable(SUBTRACTION);
+    private WebElement chooseOperation(Operations operation) throws InvalidArgumentException {
+        switch (operation){
+            case ADDITION:
+                return waitForElementIsClickable(addition);
+            case DIVISION:
+                return waitForElementIsClickable(division);
+            case MULTIPLICATION:
+                return waitForElementIsClickable(multiplication);
+            case SUBTRACTION:
+                return waitForElementIsClickable(subtraction);
             default:
                 throw new InvalidArgumentException(String.format("Invalid operation: %s", operation));
         }
     }
 
     public void calculate(){
-        WebElement calculate = waitForElementIsClickable(CALCULATE);
+        WebElement calculate = waitForElementIsClickable(this.calculate);
         calculate.click();
     }
 
@@ -76,7 +69,7 @@ public class CalcPage extends BasePage {
     }
 
     public String getLabelText(){
-        WebElement label = waitForElementIsVisible(LABEL);
+        WebElement label = waitForElementIsVisible(this.label);
         return label.getText();
     }
 }

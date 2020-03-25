@@ -1,8 +1,10 @@
 package com.calc;
 
 import com.calc.utils.DataReader;
+import com.calc.utils.Operations;
 import com.calc.utils.OperationsHelper;
 import org.json.JSONObject;
+import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -28,7 +30,7 @@ public class RestApiTest {
     }
 
     @Test(testName = "send GET", dataProvider = "getExcelData")
-    public void sendGetRequest(String operation, double value1, double value2, double expectedResult) {
+    public void sendGetRequest(Operations operation, double value1, double value2, double expectedResult) {
         String operand = chooseRequestOperand(operation, true);
         String requestUrl = String.format("%s/%s?val1=%s&val2=%s", URL, operand, (int)value1, (int)value2);
 
@@ -42,7 +44,7 @@ public class RestApiTest {
     }
 
     @Test(testName = "send POST", dataProvider = "getExcelData")
-    public void sendPostRequest(String operation, double value1, double value2, double expectedResult) {
+    public void sendPostRequest(Operations operation, double value1, double value2, double expectedResult) {
         String requestUrl = String.format("%s/compute", URL);
 
         JSONObject jsonObj = new JSONObject()
@@ -68,7 +70,7 @@ public class RestApiTest {
     }
 
     @Test(testName = "random GET", dataProvider = "operations", invocationCount = 10)
-    public void sendRandomGetRequest(String operation){
+    public void sendRandomGetRequest(Operations operation){
         int value1 = randomValue();
         int value2 = randomValue();
         int expected = performOperation(operation, value1, value2);
@@ -84,11 +86,11 @@ public class RestApiTest {
                 .and()
                 .body("result", equalTo(expected));
 
-        System.out.println(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
+        Reporter.log(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
     }
 
     @Test(testName = "random POST", dataProvider = "operations", invocationCount = 10)
-    public void sendRandomPostRequest(String operation) {
+    public void sendRandomPostRequest(Operations operation) {
         int value1 = randomValue();
         int value2 = randomValue();
         int expected = performOperation(operation, value1, value2);
@@ -111,6 +113,6 @@ public class RestApiTest {
                 .and()
                 .body("result", equalTo(expected));
 
-        System.out.println(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
+        Reporter.log(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
     }
 }

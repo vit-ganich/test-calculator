@@ -5,7 +5,7 @@ import com.predic8.wsdl.WSDLParser;
 import com.predic8.wstool.creator.RequestTemplateCreator;
 import com.predic8.wstool.creator.SOARequestCreator;
 import groovy.xml.MarkupBuilder;
-import org.testng.annotations.Ignore;
+import org.apache.poi.util.NotImplemented;
 import org.testng.annotations.Test;
 
 import java.io.StringWriter;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class SoapWSTest {
 
     @Test
-    @Ignore
+    @NotImplemented
     public void getRequestStructure() {
         String endpointUrl = "http://localhost:8080/testCalc/soapWS";
         WSDLParser parser = new WSDLParser();

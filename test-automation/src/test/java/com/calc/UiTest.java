@@ -3,8 +3,10 @@ package com.calc;
 import com.calc.utils.DataReader;
 import com.calc.utils.OperationsHelper;
 import com.calc.webui.base.BaseTest;
+import com.calc.utils.Operations;
 import com.calc.webui.pages.CalcPage;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -25,7 +27,7 @@ public class UiTest extends BaseTest {
     }
 
     @Test(testName = "test calculator", dataProvider = "getExcelData")
-    public void testCalculator(String operation, double value1, double value2, double expectedResult) {
+    public void testCalculator(Operations operation, double value1, double value2, double expectedResult) {
         CalcPage page = new CalcPage(driver);
 
         page.selectOperation(operation);
@@ -38,16 +40,14 @@ public class UiTest extends BaseTest {
 
         Assert.assertEquals(actual, expected);
 
-        System.out.println(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
+        Reporter.log(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
     }
 
     @DataProvider
-    public static Object[] operations() {
-        return OperationsHelper.operations;
-    }
+    public static Object[] operations() { return OperationsHelper.operations; }
 
     @Test(testName = "random operations", dataProvider = "operations", invocationCount = 10)
-    public void testRandomAddition(String operation){
+    public void testRandomAddition(Operations operation){
         int value1 = randomValue();
         int value2 = randomValue();
 
@@ -63,7 +63,7 @@ public class UiTest extends BaseTest {
         Assert.assertEquals(actual, expected, String.format("%s: %s, %s = %s, not %s",
                 operation, value1, value2, expected, actual));
 
-        System.out.println(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
+        Reporter.log(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
     }
 
     @Test(testName = "verify label")
