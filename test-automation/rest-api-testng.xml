@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Rest API test">
+    <test name="Rest API test">
+        <classes>
+            <class name="com.calc.RestApiTest"/>
+        </classes>
+    </test>
+</suite>
