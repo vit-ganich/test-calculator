@@ -30,8 +30,8 @@ public class RestApiTest {
     }
 
     @Test(testName = "send GET", dataProvider = "getExcelData")
-    public void sendGetRequest(Operations operation, double value1, double value2, double expectedResult) {
-        String operand = chooseRequestOperand(operation, true);
+    public void sendGetRequest(String operation, double value1, double value2, double expectedResult) {
+        String operand = chooseRequestOperand(Operations.valueOf(operation), true);
         String requestUrl = String.format("%s/%s?val1=%s&val2=%s", URL, operand, (int)value1, (int)value2);
 
         when()
@@ -44,13 +44,13 @@ public class RestApiTest {
     }
 
     @Test(testName = "send POST", dataProvider = "getExcelData")
-    public void sendPostRequest(Operations operation, double value1, double value2, double expectedResult) {
+    public void sendPostRequest(String operation, double value1, double value2, double expectedResult) {
         String requestUrl = String.format("%s/compute", URL);
 
         JSONObject jsonObj = new JSONObject()
                 .put("val1", (int)value1)
                 .put("val2", (int)value2)
-                .put("operation", chooseRequestOperand(operation, false));
+                .put("operation", chooseRequestOperand(Operations.valueOf(operation), false));
 
         given()
                 .contentType("application/json")

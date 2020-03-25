@@ -43,19 +43,6 @@ public class BasePage {
     }
 
     /**
-     * Waits for element has attribute with specified text
-     *
-     * @param locator   search criteria to find the element
-     * @param attribute the attribute
-     * @param text  the text the attribute contains
-     * @return  boolean
-     */
-    protected boolean waitForElementAttributeContainsText(By locator, String attribute, String text){
-        WebDriverWait wait = new WebDriverWait(driver, timeoutSeconds);
-        return wait.until(ExpectedConditions.attributeToBe(locator, attribute, text));
-    }
-
-    /**
      * Writes to text box element
      *
      * @param textBox   the text box webElement

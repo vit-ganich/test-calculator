@@ -11,7 +11,7 @@ import static java.util.concurrent.ThreadLocalRandom.current;
  */
 public class OperationsHelper {
 
-    public static Object[] operations = new Object[] {ADDITION, DIVISION, MULTIPLICATION, SUBTRACTION};
+    public static Object[] operations = new Object[] { ADDITION, DIVISION, MULTIPLICATION, SUBTRACTION };
 
     /**
      * Method performs math operations for given operand.

@@ -27,10 +27,9 @@ public class UiTest extends BaseTest {
     }
 
     @Test(testName = "test calculator", dataProvider = "getExcelData")
-    public void testCalculator(Operations operation, double value1, double value2, double expectedResult) {
+    public void testCalculator(String operation, double value1, double value2, double expectedResult) {
         CalcPage page = new CalcPage(driver);
-
-        page.selectOperation(operation);
+        page.selectOperation(Operations.valueOf(operation));
         page.enterFirstValue(String.valueOf((int)value1));
         page.enterSecondValue(String.valueOf((int)value2));
         page.calculate();
