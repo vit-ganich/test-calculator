@@ -1,5 +1,5 @@
 package com.calc.webui.pages;
-import com.calc.utils.Operations;
+import com.calc.utils.OperationsEnum;
 import com.calc.webui.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
@@ -22,7 +22,7 @@ public class CalcPage extends BasePage {
     private By multiplication = By.cssSelector("input[value='mul']");
     private By division = By.cssSelector("input[value='div']");
     private By calculate = By.cssSelector("input[type='submit']");
-    private By RESULT = By.cssSelector("input[name='result']");
+    private By result = By.cssSelector("input[name='result']");
 
     public CalcPage(WebDriver driver) {
         super(driver);
@@ -38,12 +38,18 @@ public class CalcPage extends BasePage {
         writeToTextBox(textBox, value);
     }
 
-    public void selectOperation(Operations operation){
+    public void selectOperation(OperationsEnum operation){
         WebElement operationElem = chooseOperation(operation);
         operationElem.click();
     }
 
-    private WebElement chooseOperation(Operations operation) throws InvalidArgumentException {
+    /**
+     * Get the operations radio button
+     * @param operation operation to select
+     * @return  operations radio button
+     * @throws InvalidArgumentException in case of invalid argument
+     */
+    private WebElement chooseOperation(OperationsEnum operation) throws InvalidArgumentException {
         switch (operation){
             case ADDITION:
                 return waitForElementIsClickable(addition);
@@ -64,12 +70,17 @@ public class CalcPage extends BasePage {
     }
 
     public String readResult(){
-        WebElement result = waitForElementIsClickable(RESULT);
+        WebElement result = waitForElementIsClickable(this.result);
         return result.getAttribute("value");
     }
 
     public String getLabelText(){
         WebElement label = waitForElementIsVisible(this.label);
         return label.getText();
+    }
+
+    public String readPageText(){
+        WebElement page = waitForElementIsVisible(By.cssSelector("body"));
+        return page.getText();
     }
 }

@@ -18,6 +18,12 @@ public class BaseTest {
     private static final String URL = "http://localhost:8080/testCalc/webUI";
     protected WebDriver driver;
 
+    @BeforeClass
+    @Parameters("browser")
+    public void setUpClass(@Optional("chrome") String browser)  {
+        driver = getDriver(browser);
+    }
+
     private WebDriver getDriver(String browser) throws InvalidArgumentException {
         if (driver != null){
             return driver;
@@ -31,22 +37,24 @@ public class BaseTest {
         throw new InvalidArgumentException(String.format("Unsupported browser type: %s", browser));
     }
 
+    /**
+     * Create an instance of Chrome driver
+     * @return  new ChromeDriver
+     */
     private ChromeDriver chromeDriver(){
         System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver.exe");
         return new ChromeDriver();
     }
 
+    /**
+     * Create an instance of Firefox driver
+     * @return  new FirefoxDriver
+     */
     private FirefoxDriver firefoxDriver(){
         System.setProperty("webdriver.firefox.driver","src/main/resources/geckodriver.exe");
         FirefoxOptions options = new FirefoxOptions();
         options.setHeadless(true);
         return new FirefoxDriver();
-    }
-
-    @BeforeClass
-    @Parameters("browser")
-    public void setUpClass(@Optional("chrome") String browser)  {
-        driver = getDriver(browser);
     }
 
     @BeforeMethod

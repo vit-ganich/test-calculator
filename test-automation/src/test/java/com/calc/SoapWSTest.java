@@ -11,6 +11,10 @@ import org.testng.annotations.Test;
 import java.io.StringWriter;
 import java.util.HashMap;
 
+/**
+ * An attempt to implement tests for Soap Api testing.
+ * Unfortunately, it failed.
+ */
 public class SoapWSTest {
 
     @Test

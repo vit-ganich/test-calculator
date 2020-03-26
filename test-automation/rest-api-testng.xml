@@ -3,7 +3,7 @@
 <suite name="Rest API test">
     <test name="Rest API test">
         <classes>
-            <class name="com.calc.RestApiTest"/>
+            <class name="com.calc.restapi.RestApiGet"/>
         </classes>
     </test>
 </suite>

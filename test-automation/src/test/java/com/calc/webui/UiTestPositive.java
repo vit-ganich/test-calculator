@@ -1,35 +1,24 @@
-package com.calc;
+package com.calc.webui;
 
-import com.calc.utils.DataReader;
-import com.calc.utils.OperationsHelper;
+import com.calc.DataProviders;
+import com.calc.utils.OperationsEnum;
 import com.calc.webui.base.BaseTest;
-import com.calc.utils.Operations;
 import com.calc.webui.pages.CalcPage;
 import org.testng.Assert;
-import org.testng.Reporter;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
-import static com.calc.utils.OperationsHelper.performOperation;
-import static com.calc.utils.OperationsHelper.randomValue;
+import static com.calc.utils.Operations.performOperation;
+import static com.calc.utils.Operations.randomValue;
 
 /**
- * Class with UI tests using Selenium webDriver
+ * Class with positive UI tests using Selenium webDriver
  */
-public class UiTest extends BaseTest {
+public class UiTestPositive extends BaseTest {
 
-    @DataProvider
-    public Object[][] getExcelData() throws IOException {
-        DataReader reader = new DataReader("src/test/resources/testDataPositive.xls", "TestSuite1");
-        return reader.readExcel();
-    }
-
-    @Test(testName = "test calculator", dataProvider = "getExcelData")
-    public void testCalculator(String operation, double value1, double value2, double expectedResult) {
+    @Test(testName = "pict data test", dataProvider = "getPositiveCases", dataProviderClass = DataProviders.class)
+    public void testPictValues(String operation, double value1, double value2, double expectedResult) {
         CalcPage page = new CalcPage(driver);
-        page.selectOperation(Operations.valueOf(operation));
+        page.selectOperation(OperationsEnum.valueOf(operation));
         page.enterFirstValue(String.valueOf((int)value1));
         page.enterSecondValue(String.valueOf((int)value2));
         page.calculate();
@@ -38,15 +27,11 @@ public class UiTest extends BaseTest {
         String expected = String.valueOf((long)expectedResult);
 
         Assert.assertEquals(actual, expected);
-
-        Reporter.log(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
     }
 
-    @DataProvider
-    public static Object[] operations() { return OperationsHelper.operations; }
-
-    @Test(testName = "random operations", dataProvider = "operations", invocationCount = 10)
-    public void testRandomAddition(Operations operation){
+    @Test(testName = "random values test", dataProvider = "operations", invocationCount = 10,
+            dataProviderClass = DataProviders.class)
+    public void testRandomValues(OperationsEnum operation){
         int value1 = randomValue();
         int value2 = randomValue();
 
@@ -61,8 +46,6 @@ public class UiTest extends BaseTest {
 
         Assert.assertEquals(actual, expected, String.format("%s: %s, %s = %s, not %s",
                 operation, value1, value2, expected, actual));
-
-        Reporter.log(String.format("%s: %s, %s = %s", operation, value1, value2, expected));
     }
 
     @Test(testName = "verify label")
