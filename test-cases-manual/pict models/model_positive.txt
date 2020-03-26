@@ -1,3 +1,0 @@
-Operations: addition, subtraction, multiplication, division
-Value1: -2147483648, -46340, 215, 15, 1, 0, 2147483647, 46340, 215, 1
-Value2: -2147483648, -46340, 215, 15, 1, 0, 2147483647, 46340, 215, 1
