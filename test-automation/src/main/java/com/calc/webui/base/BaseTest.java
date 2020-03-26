@@ -54,7 +54,7 @@ public class BaseTest {
         System.setProperty("webdriver.firefox.driver","src/main/resources/geckodriver.exe");
         FirefoxOptions options = new FirefoxOptions();
         options.setHeadless(true);
-        return new FirefoxDriver();
+        return new FirefoxDriver(options);
     }
 
     @BeforeMethod

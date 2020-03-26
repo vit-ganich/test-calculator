@@ -4,6 +4,7 @@
     <test name="Rest API test">
         <classes>
             <class name="com.calc.restapi.RestApiGet"/>
+            <class name="com.calc.restapi.RestApiPost"/>
         </classes>
     </test>
 </suite>

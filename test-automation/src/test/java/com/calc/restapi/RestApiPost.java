@@ -60,12 +60,12 @@ public class RestApiPost extends BaseRequest {
                 .put("val2", value2)
                 .put("operation", chooseRequestOperand(OperationsEnum.valueOf(operation), false));
 
-        String actual = sendPostAssertCodeExtractResponse(jsonObj.toString(), requestUrl, 400).toString();
+        String actual = sendPostAssertCodeExtractResponse(jsonObj.toString(), requestUrl, 400).asString();
         String expected = String.format(
                 "Can not construct instance of java.lang.Integer from String value '%s': not a valid Integer value",
                 value2);
 
-        Assert.assertEquals(actual, expected);
+        Assert.assertTrue(actual.contains(expected));
     }
 
     @Test(testName = "POST overflow value", dataProvider = "getOverflowValues", dataProviderClass = DataProviders.class)
@@ -79,11 +79,11 @@ public class RestApiPost extends BaseRequest {
                 .put("val2", value2)
                 .put("operation", chooseRequestOperand(OperationsEnum.valueOf(operation), false));
 
-        String actual = sendPostAssertCodeExtractResponse(jsonObj.toString(), requestUrl, 400).toString();
+        String actual = sendPostAssertCodeExtractResponse(jsonObj.toString(), requestUrl, 400).asString();
         String expected = String.format(
                 "Integer from String value '%s': Overflow: numeric value (%s) out of range of Integer (-2147483648 - 2147483647)",
                 value2, value2);
 
-        Assert.assertEquals(actual, expected);
+        Assert.assertTrue(actual.contains(expected));
     }
 }

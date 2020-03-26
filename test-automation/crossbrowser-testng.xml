@@ -5,12 +5,14 @@
         <parameter name="browser" value="firefox" />
         <classes>
             <class name="com.calc.webui.UiTestPositive"/>
+            <class name="com.calc.webui.UiTestNegative"/>
         </classes>
     </test>
     <test name="Chrome Test">
         <parameter name="browser" value="chrome" />
         <classes>
             <class name="com.calc.webui.UiTestPositive"/>
+            <class name="com.calc.webui.UiTestNegative"/>
         </classes>
     </test>
 </suite>
