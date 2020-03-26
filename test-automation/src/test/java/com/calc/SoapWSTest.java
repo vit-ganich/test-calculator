@@ -12,7 +12,7 @@ import java.io.StringWriter;
 import java.util.HashMap;
 
 /**
- * An attempt to implement tests for Soap Api testing.
+ * An attempt to implement tests for Soap Api testing - I can't get a response with computed result.
  * Unfortunately, it failed.
  */
 public class SoapWSTest {
