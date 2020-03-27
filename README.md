@@ -5,7 +5,7 @@ The attached application can be deployed on any java web server. We recommend Ap
 Description of the application and its interfaces is available on the app home page.  
 This app was developed with basic scenarios for testing (web services, UI).  
 Before implementation of new features and larger refactoring the developers asked for test automation.  
-Propose the technology you would use and implement a subset of the proposed tests. 
+Propose the technology you would use and implement a subset of the proposed tests.  
 If you find any errors within an app, report them.  
 
 **What do we expect:**  
