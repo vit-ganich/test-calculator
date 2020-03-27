@@ -15,7 +15,7 @@ Example of bug reports for selected issues.
   
   
 ## Overview
-.
+```
 ├── test-automation             # Automated tests for WebUI and Rest API  
     ├── src/main                  
         ├── java/com/calc       # Base classes for tests  
@@ -25,7 +25,7 @@ Example of bug reports for selected issues.
         └── resources           # Test data Excel spreadsheet with test combinations    
 ├── test-jmeter                 # JMeter performance tests  
 ├── test-plan                   # Test plan, bugs (pdf), models for pairwise testing tool (PICT)  
-  
+```  
 ## Project setup  
 See */test-plan/Test Plan.pdf* for details  
 
