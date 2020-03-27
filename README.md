@@ -15,15 +15,15 @@ Example of bug reports for selected issues.
   
   
 ## Overview
-*/test-automation*    automated tests for WebUI and Rest API
-                */src/main*
-                            */java/com/calc*   base classes
-                            */resources*        webdriver executables
-                */src/test*
-                            */java/com/calc*   tests
-                            */resources*        test data Excel spreadsheet with test combinations
-*/test-jmeter*        JMeter performance tests 
-*/test-plan*          test plan, bugs (pdf), models for pairwise testing tool (PICT)
-
-## Project setup
-See */test-plan/Test Plan.pdf* for details
+*/test-automation*    automated tests for WebUI and Rest API  
+                */src/main*  
+                            */java/com/calc*   base classes  
+                            */resources*        webdriver executables  
+                */src/test*  
+                            */java/com/calc*   tests  
+                            */resources*        test data Excel spreadsheet with test combinations  
+*/test-jmeter*        JMeter performance tests   
+*/test-plan*          test plan, bugs (pdf), models for pairwise testing tool (PICT)  
+  
+## Project setup  
+See */test-plan/Test Plan.pdf* for details  
