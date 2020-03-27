@@ -1,4 +1,4 @@
-# testCalc
+# test-calculator
 
 **Instructions:**  
 The attached application can be deployed on any java web server. We recommend Apache Tomcat.   
