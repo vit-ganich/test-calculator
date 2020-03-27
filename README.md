@@ -15,6 +15,7 @@ Example of bug reports for selected issues.
   
   
 ## Overview
+.
 ├── test-automation             # Automated tests for WebUI and Rest API  
     ├── src/main                  
         ├── java/com/calc       # Base classes for tests  
